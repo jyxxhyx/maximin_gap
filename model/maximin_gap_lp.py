@@ -6,7 +6,7 @@ from pulp import PULP_CBC_CMD
 from model.abstract_model import AbstractModel
 
 
-class MaximinGap(AbstractModel):
+class MaximinGapLp(AbstractModel):
     def __init__(self, interval_list: List[Tuple[int, int]]):
         self.m = pulp.LpProblem('Maximin Gap', pulp.LpMaximize)
         self.interval_list = interval_list
@@ -50,3 +50,11 @@ class MaximinGap(AbstractModel):
 
     def _is_feasible(self):
         return True
+
+
+if __name__ == '__main__':
+    interval_list = [(0, 5), (3, 8), (1, 10)]
+    model = MaximinGapLp(interval_list)
+    result, gap = model.solve()
+    print(result)
+    print(gap)
