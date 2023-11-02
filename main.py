@@ -4,6 +4,7 @@ from random import random, randint
 
 from model.maximin_gap_lp import MaximinGapLp
 from model.maximin_gap_ip import MaximinGapIp
+from output_handler.drawer import draw_result
 from output_handler.writer import output_file
 
 
@@ -20,6 +21,7 @@ def main():
         print('Solving the problem via IP.')
     result, gap = model.solve()
     output_file(interval_list, result, gap, 'maximin_gap.txt')
+    draw_result(interval_list, result, 'maximin_gap')
     return
 
 
